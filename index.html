@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arjun Malgwa | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" href="images/oscar.png">
+  <style>
+    .mascot-widget { text-align: center; margin: 2rem 0; }
+    .mascot-img { width: 180px; cursor: pointer; transition: transform 0.2s; }
+    .mascot-img:active { transform: scale(1.08) rotate(-3deg); }
+    .pet-counter { font-size: 1.2rem; margin-top: 0.5rem; }
+    .milestone { color: #ff4081; font-weight: bold; }
+    .contact-form { max-width: 400px; margin: 2rem auto; padding: 2rem; background: #fff8; border-radius: 12px; box-shadow: 0 2px 12px #0001; }
+    .contact-form input, .contact-form textarea { width: 100%; margin-bottom: 1rem; padding: 0.7rem; border-radius: 6px; border: 1px solid #ccc; }
+    .contact-form button { background: #ff4081; color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 6px; cursor: pointer; }
+    .resume-btn { display: inline-block; margin: 1rem 0; padding: 0.7rem 2rem; background: #1976d2; color: #fff; border-radius: 6px; text-decoration: none; font-weight: bold; }
+    @media (max-width: 600px) { .mascot-img { width: 120px; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar glass">
+    <div class="container">
+      <span class="logo">Arjun Malgwa</span>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <header id="home" class="hero glass">
+    <div class="hero-content">
+      <h1>Hi, I'm Arjun Malgwa</h1>
+      <h2>A Business Analytics professional</h2>
+      <p>Building data-driven solutions and leveraging machine learning to uncover insights.</p>
+      <div class="hero-stats">
+        <div><span>4+</span><br>Years of Experience</div>
+        <div><span>6+</span><br>Projects Completed</div>
+        <div><span>25+</span><br>Technologies</div>
+        <div><span>7+</span><br>Certifications</div>
+      </div>
+      <a class="resume-btn" href="Resume_Shivom_Moyade.pdf" download>Download Resume</a>
+    </div>
+    <div class="mascot-widget">
+      <img src="images/oscar.png" alt="Oscar the White Spitz" class="mascot-img" id="oscarMascot">
+      <div class="pet-counter" id="petCounter">Oscar has been petted ... times!</div>
+      <div id="milestoneMsg"></div>
+    </div>
+  </header>
+  <main class="container">
+    <section id="about" class="glass">
+      <h2>About Me</h2>
+      <p>As a Master's candidate in Business Analytics at Drexel University, I thrive on bridging the gap between complex data and strategic business outcomes. My goal is to leverage my skills as a <b>Business Analyst</b>, <b>Data Analyst</b>, and <b>AI/ML Enthusiast</b> to help organizations make smarter, data-driven decisions.<br>My experience ranges from developing sophisticated Retrieval-Augmented Generation (RAG) models to building Python automation scripts that have driven 20% sales growth. I enjoy the full spectrum of a data project—from initial analysis and feature engineering to building predictive models and visualizing results.</p>
+    </section>
+    <section id="experience" class="glass">
+      <h2>Experience</h2>
+      <ul>
+        <li>4+ Years of Experience</li>
+        <li>6+ Projects Completed</li>
+        <li>25+ Technologies</li>
+        <li>7+ Certifications</li>
+      </ul>
+    </section>
+    <section id="education" class="glass">
+      <h2>Education & Certifications</h2>
+      <ul>
+        <li>Master's candidate in Business Analytics, Drexel University</li>
+        <!-- Add more education/certifications here -->
+      </ul>
+    </section>
+    <section id="skills" class="glass">
+      <h2>Skills</h2>
+      <ul>
+        <li>Business Analysis</li>
+        <li>Data Analysis</li>
+        <li>Machine Learning</li>
+        <li>Python, SQL, R</li>
+        <li>Data Visualization</li>
+        <!-- Add more skills here -->
+      </ul>
+    </section>
+    <section id="projects" class="glass">
+      <h2>Projects</h2>
+      <ul>
+        <li>Retrieval-Augmented Generation (RAG) Models</li>
+        <li>Python Automation for Sales Growth</li>
+        <!-- Add more projects here -->
+      </ul>
+    </section>
+    <section id="contact" class="glass">
+      <h2>Contact</h2>
+      <form class="contact-form" action="https://formspree.io/f/mayvlqzv" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <div class="contact-info">
+        <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll get back to you!</p>
+        <p>Email: <a href="mailto:arjun.malgwa@gmail.com">arjun.malgwa@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="glass">
+    &copy; 2025 Arjun Malgwa. All Rights Reserved.
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Oscar mascot widget logic
+    async function updatePetCounter() {
+      const res = await fetch('/api/mascot/count');
+      const data = await res.json();
+      document.getElementById('petCounter').textContent = `Oscar has been petted ${data.count} times!`;
+      if (data.count >= 100) document.getElementById('milestoneMsg').textContent = '🎉 Oscar is famous! 100+ pets!';
+      else if (data.count >= 50) document.getElementById('milestoneMsg').textContent = 'Oscar is loving the attention!';
+      else if (data.count >= 25) document.getElementById('milestoneMsg').textContent = 'Oscar is wagging his tail!';
+      else if (data.count >= 10) document.getElementById('milestoneMsg').textContent = 'Oscar is happy!';
+      else document.getElementById('milestoneMsg').textContent = '';
+    }
+    document.getElementById('oscarMascot').onclick = async function() {
+      await fetch('/api/mascot/interact', { method: 'POST' });
+      updatePetCounter();
+    };
+    updatePetCounter();
+  </script>
+</body>
+</html>
